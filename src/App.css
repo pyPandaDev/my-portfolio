@@ -1,0 +1,80 @@
+/* Custom App Styles */
+.App {
+  min-height: 100vh;
+  background-color: #000000;
+  cursor: none; /* Hide default cursor */
+}
+
+/* Show default cursor on input fields and textareas */
+input,
+textarea,
+select {
+  cursor: text !important;
+}
+
+/* For browsers that don't support custom cursor */
+@media (pointer: coarse) {
+  .App {
+    cursor: auto;
+  }
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom blur effect for code background */
+.blur-subtle {
+  filter: blur(1px);
+}
