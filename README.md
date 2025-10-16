@@ -1,4 +1,4 @@
-# Mayank Sharma - AI & Data Science Portfolio
+# Mayank Tiwari - AI & Data Science Portfolio
 
 A modern, professional portfolio website showcasing AI, machine learning, and data science expertise. Built with React, Tailwind CSS, and Framer Motion for a stunning visual experience.
 
@@ -55,10 +55,10 @@ src/
 - Responsive layout with AI-themed design
 
 ### Skills Section
-- **Programming Languages**: Python, R, SQL, JavaScript, C++, Java
-- **AI & Machine Learning**: TensorFlow, PyTorch, Scikit-learn, Keras, OpenCV, NLTK
+- **Programming Languages**: Python, Dart
+- **AI & Machine Learning**: TensorFlow, PyTorch, Scikit-learn, Keras, OpenCV
 - **Data Science & Analytics**: Pandas, NumPy, Matplotlib, Seaborn, Plotly, Jupyter
-- **Cloud & Tools**: AWS, Google Cloud, Docker, Git, Linux, Tableau
+- **Database**: MySQL , MongoDb
 - Additional expertise and certifications
 
 ### Projects Section
@@ -74,11 +74,6 @@ src/
 - AI-focused messaging
 
 ## 🎯 Key Features
-
-### Dark Mode
-- Toggle button in navigation
-- Persistent theme preference
-- Smooth transitions between themes
 
 ### Animations
 - Scroll-triggered animations
@@ -194,6 +189,6 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 ## 📞 Contact
 
-Mayank Sharma - [LinkedIn](https://linkedin.com/in/mayank-sharma-ai) - mayank.sharma@example.com
+Mayank Sharma - [LinkedIn](www.linkedin.com/in/mayank-tiwari-458400389) - mayankt1713@gmail.com
 
-Project Link: [https://github.com/mayanksharma/ai-portfolio](https://github.com/mayanksharma/ai-portfolio)
+Project Link: [[https://github.com/pyPandaDev/my-portfolio](https://github.com/pyPandaDev/my-portfolio)]
