@@ -19,7 +19,7 @@ export const socialLinks = [
   },
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BW4NPkENbT7aTd4gOzHgD3Q%3D%3D",
+    url: "www.linkedin.com/in/mayank-tiwari-458400389",
     icon: "linkedin"
   },
   {
