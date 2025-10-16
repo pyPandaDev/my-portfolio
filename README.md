@@ -2,6 +2,8 @@
 
 A modern, professional portfolio website showcasing AI, machine learning, and data science expertise. Built with React, Tailwind CSS, and Framer Motion for a stunning visual experience.
 
+Live Testing :https://mayank-portfolio-rho.vercel.app/
+
 ## 🚀 Features
 
 - **AI-Focused Design**: Professional layout tailored for AI/Data Science professionals
