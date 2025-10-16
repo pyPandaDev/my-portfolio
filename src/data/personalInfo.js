@@ -6,7 +6,7 @@ export const personalInfo = {
   email: "mayankt1713@gmail.com",
   phone: "+91 93097 42643",
   location: "Thane, India",
-  resume: "/resume.pdf",
+  resume: "https://drive.google.com/file/d/1NCSjP5eIyz5LVCqenoNkfIoQjgeglqOH/view?usp=sharing",
   graduationYear: "2025",
   degree: "Bachelor of Technology in Computer Science"
 };

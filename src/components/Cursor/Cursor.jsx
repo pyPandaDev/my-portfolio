@@ -5,6 +5,19 @@ const Cursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [sparkles, setSparkles] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     let sparkleId = 0;
@@ -52,9 +65,11 @@ const Cursor = () => {
     };
   }, []);
 
+  if (isMobile) return null;
+
   return (
     <>
-      {/* Sparkle trail particles */}
+      {/* Sparkles */}
       <AnimatePresence>
         {sparkles.map((sparkle) => (
           <motion.div

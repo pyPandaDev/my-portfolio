@@ -109,6 +109,24 @@ const Hero = () => {
     return icons[iconName] || Mail;
   };
 
+  // Return a viewer-friendly Google Drive link (opens in Drive viewer)
+  const getResumeLink = () => {
+    const url = personalInfo.resume || '';
+    // If it's already a Google Drive "view" link, return as-is
+    if (/drive.google.com\/file\/d\/.+\/view/.test(url) || /drive.google.com\/open/.test(url)) {
+      return url;
+    }
+
+    // Try to extract file id from common Google Drive patterns: /d/FILEID/
+    const match = url.match(/\/d\/([^\/]+)\//);
+    if (match && match[1]) {
+      return `https://drive.google.com/file/d/${match[1]}/view`;
+    }
+
+    // Fallback to original URL
+    return url;
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -411,15 +429,18 @@ Feature_D  ████░░░░░░░░ 0.12`;
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-12 sm:mb-16 justify-center px-4 w-full sm:w-auto"
         >
-          <motion.button
+          <motion.a
             whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 40px rgba(255, 255, 255, 0.2)" }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            href={getResumeLink()}
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 sm:px-10 py-3 sm:py-4 bg-white text-black hover:bg-gray-200 rounded-lg font-semibold text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3"
           >
             <Download size={20} className="sm:w-6 sm:h-6" />
             <span>Download Resume</span>
-          </motion.button>
+          </motion.a>
           
           <motion.button
             whileHover={{ scale: 1.05, y: -5 }}
