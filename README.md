@@ -191,6 +191,6 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 ## 📞 Contact
 
-Mayank Sharma - [LinkedIn](www.linkedin.com/in/mayank-tiwari-458400389) - mayankt1713@gmail.com
+Mayank Tiwari - [LinkedIn](www.linkedin.com/in/mayank-tiwari-458400389) - mayankt1713@gmail.com
 
 Project Link: [[https://github.com/pyPandaDev/my-portfolio](https://github.com/pyPandaDev/my-portfolio)]
