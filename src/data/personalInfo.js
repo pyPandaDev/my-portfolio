@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: "Mayank Tiwari",
-  title: "AI & Data Science Developer",
+  title: "AI & Data Science Engineer",
   subtitle: "Transforming data into intelligent solutions",
   description: "Computer Science graduate (2025) passionate about artificial intelligence, machine learning, and data science. I specialize in building intelligent systems that solve real-world problems using Python, advanced algorithms, and cutting-edge AI technologies.",
   email: "mayankt1713@gmail.com",
@@ -19,7 +19,7 @@ export const socialLinks = [
   },
   {
     name: "LinkedIn",
-    url: "www.linkedin.com/in/mayank-tiwari-458400389",
+    url: "https://linkedin.com/in/mayank-tiwari-458400389",
     icon: "linkedin"
   },
   {

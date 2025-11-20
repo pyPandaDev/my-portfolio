@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '../../context/ThemeContext';
 
 const ParticleBackground = () => {
   const canvasRef = useRef(null);
+
+  const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -42,7 +45,8 @@ const ParticleBackground = () => {
       }
 
       draw() {
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        const color = theme === 'dark' ? '255, 255, 255' : '0, 0, 0';
+        ctx.fillStyle = `rgba(${color}, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -61,6 +65,7 @@ const ParticleBackground = () => {
 
     // Connect particles with lines
     const connectParticles = () => {
+      const color = theme === 'dark' ? '255, 255, 255' : '0, 0, 0';
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -69,7 +74,7 @@ const ParticleBackground = () => {
 
           if (distance < 120) {
             const opacity = (1 - distance / 120) * 0.2;
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+            ctx.strokeStyle = `rgba(${color}, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -100,7 +105,7 @@ const ParticleBackground = () => {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas

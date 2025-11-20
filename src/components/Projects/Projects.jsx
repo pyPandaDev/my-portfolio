@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useMotionValue, useTransform } from 'framer-motion';
 import { ExternalLink, Github, Eye, Brain, Database, BarChart3, Code2 } from 'lucide-react';
 import { projects } from '../../data/projects';
 
@@ -58,11 +58,11 @@ const Projects = () => {
     { key: 'Data Science', label: 'Data Science' }
   ];
 
-  const filteredProjects = filter === 'featured' 
+  const filteredProjects = filter === 'featured'
     ? projects.filter(project => project.featured)
     : filter === 'all'
-    ? projects
-    : projects.filter(project => project.category === filter);
+      ? projects
+      : projects.filter(project => project.category === filter);
 
   const getCategoryIcon = (category) => {
     const icons = {
@@ -94,25 +94,50 @@ const Projects = () => {
     const CategoryIcon = getCategoryIcon(project.category);
     const categoryColor = getCategoryColor(project.category);
 
+    // Tilt Effect Logic
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useTransform(y, [-100, 100], [5, -5]);
+    const rotateY = useTransform(x, [-100, 100], [-5, 5]);
+
+    const handleMouseMove = (event) => {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+      const xPct = mouseX / width - 0.5;
+      const yPct = mouseY / height - 0.5;
+      x.set(xPct * 200);
+      y.set(yPct * 200);
+    };
+
+    const handleMouseLeave = () => {
+      x.set(0);
+      y.set(0);
+    };
+
     return (
       <motion.div
         variants={cardVariants}
-        whileHover="hover"
-        className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-white/10"
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="bg-white dark:bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-200 dark:border-white/10 perspective-1000"
       >
         {/* Project Image */}
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden transform-gpu translate-z-0">
           <div className={`w-full h-48 bg-gradient-to-br ${categoryColor} flex items-center justify-center`}>
-            <div className="text-center">
+            <div className="text-center transform transition-transform duration-500 group-hover:scale-110">
               <CategoryIcon className="w-16 h-16 text-white mx-auto mb-2" />
               <span className="text-2xl font-bold text-white">
                 {project.title.split(' ').map(word => word[0]).join('')}
               </span>
             </div>
           </div>
-          
+
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4 backdrop-blur-[2px]">
             {project.liveUrl && (
               <motion.a
                 whileHover={{ scale: 1.1 }}
@@ -120,7 +145,8 @@ const Projects = () => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white rounded-full text-secondary-800 hover:text-primary-600 transition-colors"
+                aria-label={`View live demo of ${project.title}`}
+                className="p-3 bg-white rounded-full text-secondary-800 hover:text-primary-600 transition-colors shadow-lg"
               >
                 <ExternalLink size={20} />
               </motion.a>
@@ -132,7 +158,8 @@ const Projects = () => {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white rounded-full text-secondary-800 hover:text-primary-600 transition-colors"
+                aria-label={`View source code for ${project.title}`}
+                className="p-3 bg-white rounded-full text-secondary-800 hover:text-primary-600 transition-colors shadow-lg"
               >
                 <Github size={20} />
               </motion.a>
@@ -141,28 +168,28 @@ const Projects = () => {
 
           {/* Featured Badge */}
           {project.featured && (
-            <div className="absolute top-4 right-4">
-              <span className="px-3 py-1 bg-accent-500 text-white text-xs font-semibold rounded-full">
+            <div className="absolute top-4 right-4 z-10">
+              <span className="px-3 py-1 bg-accent-500 text-white text-xs font-semibold rounded-full shadow-md">
                 Featured
               </span>
             </div>
           )}
 
           {/* Category Badge */}
-          <div className="absolute top-4 left-4">
-            <span className={`px-3 py-1 bg-gradient-to-r ${categoryColor} text-white text-xs font-semibold rounded-full`}>
+          <div className="absolute top-4 left-4 z-10">
+            <span className={`px-3 py-1 bg-gradient-to-r ${categoryColor} text-white text-xs font-semibold rounded-full shadow-md`}>
               {project.category}
             </span>
           </div>
         </div>
 
         {/* Project Content */}
-        <div className="p-6">
-          <h3 className="text-xl font-bold text-white mb-2">
+        <div className="p-6 bg-white dark:bg-transparent">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">
             {project.title}
           </h3>
-          
-          <p className="text-gray-400 mb-4 line-clamp-3">
+
+          <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 transition-colors duration-300">
             {project.description}
           </p>
 
@@ -171,7 +198,7 @@ const Projects = () => {
             {project.technologies.map((tech, techIndex) => (
               <span
                 key={techIndex}
-                className="px-3 py-1 bg-white/10 text-gray-300 text-xs font-medium rounded-full"
+                className="px-3 py-1 bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 text-xs font-medium rounded-full"
               >
                 {tech}
               </span>
@@ -187,7 +214,8 @@ const Projects = () => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-white hover:bg-gray-200 text-black rounded-lg font-medium transition-all duration-300"
+                aria-label={`View live demo of ${project.title}`}
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gray-900 dark:bg-white hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-black rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg"
               >
                 <Eye size={16} />
                 Live Demo
@@ -200,7 +228,8 @@ const Projects = () => {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-white/30 text-gray-300 hover:bg-white hover:text-black rounded-lg font-medium transition-colors"
+                aria-label={`View source code for ${project.title}`}
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 dark:border-white/30 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white hover:text-black dark:hover:text-black rounded-lg font-medium transition-colors"
               >
                 <Github size={16} />
                 Code
@@ -213,7 +242,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-24 bg-black">
+    <section id="projects" className="py-24 bg-white dark:bg-black transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -226,7 +255,7 @@ const Projects = () => {
             variants={itemVariants}
             className="text-5xl md:text-6xl font-bold mb-6"
           >
-            <span className="text-white">
+            <span className="text-gray-900 dark:text-white transition-colors duration-300">
               AI Projects
             </span>
           </motion.h2>
@@ -236,9 +265,9 @@ const Projects = () => {
           ></motion.div>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12"
+            className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12 transition-colors duration-300"
           >
-            Explore my portfolio of AI and data science projects that demonstrate real-world applications 
+            Explore my portfolio of AI and data science projects that demonstrate real-world applications
             of machine learning, deep learning, and data analysis.
           </motion.p>
 
@@ -253,11 +282,10 @@ const Projects = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setFilter(filterOption.key)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                  filter === filterOption.key
-                    ? 'bg-white text-black shadow-lg'
-                    : 'bg-white/5 backdrop-blur-sm text-gray-300 hover:bg-white/10 border border-white/10'
-                }`}
+                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${filter === filterOption.key
+                  ? 'bg-gray-900 dark:bg-white text-white dark:text-black shadow-lg'
+                  : 'bg-white dark:bg-white/5 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10'
+                  }`}
               >
                 {filterOption.label}
               </motion.button>

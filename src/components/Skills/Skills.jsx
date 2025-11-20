@@ -16,12 +16,12 @@ const Skills = () => {
         setSelectedCertificate(null);
       }
     };
-    
+
     if (selectedCertificate) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
     }
-    
+
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
@@ -75,14 +75,14 @@ const Skills = () => {
       className="group"
     >
       <div className="flex items-center justify-between mb-3">
-        <span className="text-lg font-semibold text-gray-300 group-hover:text-white transition-colors">
+        <span className="text-lg font-semibold text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
           {skill.name}
         </span>
-        <span className="text-sm font-bold text-gray-500">
+        <span className="text-sm font-bold text-gray-500 dark:text-gray-500">
           {skill.level}%
         </span>
       </div>
-      <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
+      <div className="w-full h-3 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
         <motion.div
           custom={skill.level}
           variants={progressVariants}
@@ -95,7 +95,7 @@ const Skills = () => {
   );
 
   return (
-    <section id="skills" className="py-24 bg-black">
+    <section id="skills" className="py-24 bg-gray-50 dark:bg-black transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -108,7 +108,7 @@ const Skills = () => {
             variants={itemVariants}
             className="text-5xl md:text-6xl font-bold mb-6"
           >
-            <span className="text-white">
+            <span className="text-gray-900 dark:text-white transition-colors duration-300">
               Technical Skills
             </span>
           </motion.h2>
@@ -118,7 +118,7 @@ const Skills = () => {
           ></motion.div>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed transition-colors duration-300"
           >
             Expertise in cutting-edge technologies for AI, machine learning, and data science. Proficient in Python ecosystem and modern cloud platforms.
           </motion.p>
@@ -141,7 +141,7 @@ const Skills = () => {
                 variants={itemVariants}
                 className="text-center"
               >
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300">
                   {category.category}
                 </h3>
                 <div className={`w-20 h-1 bg-gradient-to-r ${getCategoryColor(category.category)} rounded-full mx-auto`}></div>
@@ -171,19 +171,19 @@ const Skills = () => {
           animate={isInView ? "visible" : "hidden"}
           className="mt-20 text-center"
         >
-          <h3 className="text-3xl font-bold text-white mb-8">
+          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 transition-colors duration-300">
             Additional Expertise
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {[
-              'Prompt Engineering', 'Vibe Coding', 'Deep Learning', 'Flutter', 
+              'Prompt Engineering', 'Vibe Coding', 'Deep Learning', 'Flutter',
               'Docker', 'Jupyter Lab', 'Data Visualization'
             ].map((skill, index) => (
               <motion.span
                 key={skill}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className="px-6 py-3 bg-white/5 backdrop-blur-sm text-gray-300 rounded-full shadow-md hover:shadow-lg transition-all duration-300 border border-white/10 font-medium"
+                className="px-6 py-3 bg-white dark:bg-white/5 backdrop-blur-sm text-gray-700 dark:text-gray-300 rounded-full shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-white/10 font-medium"
               >
                 {skill}
               </motion.span>
@@ -199,24 +199,24 @@ const Skills = () => {
           className="mt-20"
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300">
               Certifications & Achievements
             </h3>
             <div className="w-20 h-1 bg-gradient-to-r from-gray-600 via-gray-400 to-gray-600 rounded-full mx-auto"></div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {certificates.map((cert, index) => (
               <motion.div
                 key={cert.id}
                 variants={itemVariants}
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="group bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/10 hover:border-white/30 cursor-pointer"
+                className="group bg-white dark:bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/30 cursor-pointer"
                 onClick={() => cert.verificationUrl && window.open(cert.verificationUrl, '_blank')}
               >
                 {/* Certificate Image */}
-                <div 
-                  className="relative h-48 bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden cursor-pointer group/image"
+                <div
+                  className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 overflow-hidden cursor-pointer group/image"
                   onClick={(e) => {
                     e.stopPropagation();
                     cert.image && setSelectedCertificate(cert);
@@ -224,8 +224,8 @@ const Skills = () => {
                 >
                   {cert.image ? (
                     <>
-                      <img 
-                        src={cert.image} 
+                      <img
+                        src={cert.image}
                         alt={cert.name}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover/image:scale-105"
                         onError={(e) => {
@@ -239,16 +239,16 @@ const Skills = () => {
                       </div>
                     </>
                   ) : null}
-                  
+
                   {/* Fallback icon if image fails to load */}
                   <div className="absolute inset-0 flex items-center justify-center" style={{ display: cert.image ? 'none' : 'flex' }}>
-                    <Award className="w-20 h-20 text-gray-600 group-hover:text-gray-400 transition-colors" />
+                    <Award className="w-20 h-20 text-gray-400 dark:text-gray-600 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors" />
                   </div>
-                  
+
                   {/* Issue Date Badge */}
-                  <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-black/50 backdrop-blur-sm rounded-full">
-                    <Calendar className="w-4 h-4 text-gray-300" />
-                    <span className="text-sm font-medium text-gray-300">{cert.issueDate}</span>
+                  <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-white/80 dark:bg-black/50 backdrop-blur-sm rounded-full shadow-sm">
+                    <Calendar className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{cert.issueDate}</span>
                   </div>
                 </div>
 
@@ -257,21 +257,21 @@ const Skills = () => {
                   {/* Title & Issuer */}
                   <div>
                     <div className="flex items-start justify-between gap-2 mb-2">
-                      <h4 className="text-xl font-bold text-white group-hover:text-gray-200 transition-colors">
+                      <h4 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-gray-200 transition-colors">
                         {cert.name}
                       </h4>
                       {cert.verificationUrl && (
-                        <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors flex-shrink-0" />
+                        <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-white transition-colors flex-shrink-0" />
                       )}
                     </div>
-                    <p className="text-sm font-semibold text-gray-400 flex items-center gap-2">
+                    <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 flex items-center gap-2">
                       <Award className="w-4 h-4" />
                       {cert.issuer}
                     </p>
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm text-gray-400 leading-relaxed">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                     {cert.description}
                   </p>
 
@@ -280,7 +280,7 @@ const Skills = () => {
                     {cert.skills.map((skill, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 text-xs font-medium bg-white/10 text-gray-300 rounded-full"
+                        className="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 rounded-full"
                       >
                         {skill}
                       </span>
@@ -289,8 +289,8 @@ const Skills = () => {
 
                   {/* Verification Badge */}
                   {cert.verificationUrl && (
-                    <div className="pt-2 border-t border-white/10">
-                      <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors flex items-center gap-1">
+                    <div className="pt-2 border-t border-gray-100 dark:border-white/10">
+                      <p className="text-xs text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-400 transition-colors flex items-center gap-1">
                         <ExternalLink className="w-3 h-3" />
                         Click to verify certification
                       </p>
@@ -339,7 +339,7 @@ const Skills = () => {
                   alt={selectedCertificate.name}
                   className="w-full h-full object-contain rounded-lg shadow-2xl"
                 />
-                
+
                 {/* Certificate Info Overlay */}
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}

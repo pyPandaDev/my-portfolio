@@ -114,7 +114,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-black">
+    <section id="contact" className="py-24 bg-gray-50 dark:bg-black transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -127,7 +127,7 @@ const Contact = () => {
             variants={itemVariants}
             className="text-5xl md:text-6xl font-bold mb-6"
           >
-            <span className="text-white">
+            <span className="text-gray-900 dark:text-white transition-colors duration-300">
               Get In Touch
             </span>
           </motion.h2>
@@ -137,9 +137,9 @@ const Contact = () => {
           ></motion.div>
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed transition-colors duration-300"
           >
-            Ready to collaborate on AI and data science projects? Let's discuss how we can work together 
+            Ready to collaborate on AI and data science projects? Let's discuss how we can work together
             to build intelligent solutions that make a difference.
           </motion.p>
         </motion.div>
@@ -153,11 +153,11 @@ const Contact = () => {
           {/* Contact Information */}
           <motion.div variants={itemVariants} className="space-y-8">
             <div>
-              <h3 className="text-3xl font-bold text-white mb-6">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
                 Let's Connect
               </h3>
-              <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-                I'm always excited to discuss new opportunities in AI, machine learning, and data science. 
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed transition-colors duration-300">
+                I'm always excited to discuss new opportunities in AI, machine learning, and data science.
                 Whether you have a project in mind or want to collaborate on research, I'd love to hear from you!
               </p>
             </div>
@@ -169,16 +169,16 @@ const Contact = () => {
                   key={info.label}
                   href={info.href}
                   whileHover={{ scale: 1.02, x: 10 }}
-                  className="flex items-center space-x-4 p-6 rounded-xl bg-white/5 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 border border-white/10"
+                  className="flex items-center space-x-4 p-6 rounded-xl bg-gray-50 dark:bg-white/5 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-white/10"
                 >
-                  <div className="p-4 rounded-full bg-white/10">
-                    <info.icon className="w-6 h-6 text-gray-300" />
+                  <div className="p-4 rounded-full bg-white dark:bg-white/10 shadow-sm">
+                    <info.icon className="w-6 h-6 text-gray-600 dark:text-gray-300" />
                   </div>
                   <div>
-                    <div className="text-sm text-gray-500 font-medium">
+                    <div className="text-sm text-gray-500 dark:text-gray-500 font-medium">
                       {info.label}
                     </div>
-                    <div className="text-lg text-white font-semibold">
+                    <div className="text-lg text-gray-900 dark:text-white font-semibold">
                       {info.value}
                     </div>
                   </div>
@@ -188,7 +188,7 @@ const Contact = () => {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-xl font-semibold text-white mb-6">
+              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
                 Follow My Work
               </h4>
               <div className="flex space-x-4">
@@ -202,7 +202,7 @@ const Contact = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -5 }}
                       whileTap={{ scale: 0.9 }}
-                      className="p-4 rounded-full bg-white/5 backdrop-blur-sm shadow-lg hover:shadow-xl text-gray-400 hover:text-white transition-all duration-300 border border-white/10"
+                      className="p-4 rounded-full bg-gray-50 dark:bg-white/5 backdrop-blur-sm shadow-lg hover:shadow-xl text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-300 border border-gray-200 dark:border-white/10"
                     >
                       <IconComponent size={24} />
                     </motion.a>
@@ -214,20 +214,20 @@ const Contact = () => {
 
           {/* Contact Form */}
           <motion.div variants={itemVariants}>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/10">
-              <h3 className="text-3xl font-bold text-white mb-8">
+            <div className="bg-gray-50 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-white/10 transition-colors duration-300">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 transition-colors duration-300">
                 Send a Message
               </h3>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-300 mb-3">
+                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 transition-colors duration-300">
                       First Name
                     </label>
                     <input
                       {...register('firstName', { required: 'First name is required' })}
-                      className="w-full px-4 py-4 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-transparent bg-black/50 text-white transition-all duration-300"
+                      className="w-full px-4 py-4 border border-gray-300 dark:border-white/20 rounded-xl focus:ring-2 focus:ring-primary-500 dark:focus:ring-white/50 focus:border-transparent bg-white dark:bg-black/50 text-gray-900 dark:text-white transition-all duration-300"
                       placeholder="John"
                     />
                     {errors.firstName && (
@@ -236,12 +236,12 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-300 mb-3">
+                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 transition-colors duration-300">
                       Last Name
                     </label>
                     <input
                       {...register('lastName', { required: 'Last name is required' })}
-                      className="w-full px-4 py-4 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-transparent bg-black/50 text-white transition-all duration-300"
+                      className="w-full px-4 py-4 border border-gray-300 dark:border-white/20 rounded-xl focus:ring-2 focus:ring-primary-500 dark:focus:ring-white/50 focus:border-transparent bg-white dark:bg-black/50 text-gray-900 dark:text-white transition-all duration-300"
                       placeholder="Doe"
                     />
                     {errors.lastName && (
@@ -251,11 +251,11 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-3">
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 transition-colors duration-300">
                     Email
                   </label>
                   <input
-                    {...register('email', { 
+                    {...register('email', {
                       required: 'Email is required',
                       pattern: {
                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -263,7 +263,7 @@ const Contact = () => {
                       }
                     })}
                     type="email"
-                    className="w-full px-4 py-4 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-transparent bg-black/50 text-white transition-all duration-300"
+                    className="w-full px-4 py-4 border border-gray-300 dark:border-white/20 rounded-xl focus:ring-2 focus:ring-primary-500 dark:focus:ring-white/50 focus:border-transparent bg-white dark:bg-black/50 text-gray-900 dark:text-white transition-all duration-300"
                     placeholder="john@example.com"
                   />
                   {errors.email && (
@@ -272,12 +272,12 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-3">
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 transition-colors duration-300">
                     Subject
                   </label>
                   <input
                     {...register('subject', { required: 'Subject is required' })}
-                    className="w-full px-4 py-4 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-transparent bg-black/50 text-white transition-all duration-300"
+                    className="w-full px-4 py-4 border border-gray-300 dark:border-white/20 rounded-xl focus:ring-2 focus:ring-primary-500 dark:focus:ring-white/50 focus:border-transparent bg-white dark:bg-black/50 text-gray-900 dark:text-white transition-all duration-300"
                     placeholder="AI Project Collaboration"
                   />
                   {errors.subject && (
@@ -286,13 +286,13 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-3">
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 transition-colors duration-300">
                     Message
                   </label>
                   <textarea
                     {...register('message', { required: 'Message is required' })}
                     rows={6}
-                    className="w-full px-4 py-4 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-transparent bg-black/50 text-white resize-none transition-all duration-300"
+                    className="w-full px-4 py-4 border border-gray-300 dark:border-white/20 rounded-xl focus:ring-2 focus:ring-primary-500 dark:focus:ring-white/50 focus:border-transparent bg-white dark:bg-black/50 text-gray-900 dark:text-white resize-none transition-all duration-300"
                     placeholder="This feature was not working..."
                   />
                   {errors.message && (
@@ -305,11 +305,10 @@ const Contact = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`p-4 rounded-xl ${
-                      submitStatus === 'success'
-                        ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                        : 'bg-red-500/20 text-red-400 border border-red-500/30'
-                    }`}
+                    className={`p-4 rounded-xl ${submitStatus === 'success'
+                      ? 'bg-green-500/20 text-green-600 dark:text-green-400 border border-green-500/30'
+                      : 'bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30'
+                      }`}
                   >
                     {submitStatus === 'success'
                       ? 'Message sent successfully! I\'ll get back to you soon.'
@@ -322,7 +321,7 @@ const Contact = () => {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-white hover:bg-gray-200 disabled:bg-gray-600 text-black rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-gray-900 dark:bg-white hover:bg-gray-800 dark:hover:bg-gray-200 disabled:bg-gray-600 text-white dark:text-black rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   {isSubmitting ? (
                     <>

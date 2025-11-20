@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Github, Linkedin, BarChart3, Mail, Phone, MapPin } from 'lucide-react';
+import { Github, Linkedin, BarChart3, Mail, Phone, MapPin } from 'lucide-react';
 import { personalInfo, socialLinks } from '../../data/personalInfo';
 
 const Footer = () => {
@@ -18,18 +18,18 @@ const Footer = () => {
 
 
   return (
-    <footer className="bg-black text-gray-300 py-16 border-t border-white/10">
+    <footer className="bg-white dark:bg-black text-gray-600 dark:text-gray-300 py-16 border-t border-gray-200 dark:border-white/10 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
             <motion.h3
               whileHover={{ scale: 1.05 }}
-              className="text-3xl font-bold mb-6 text-white"
+              className="text-3xl font-bold mb-6 text-gray-900 dark:text-white transition-colors duration-300"
             >
               {personalInfo.name}
             </motion.h3>
-            <p className="text-gray-400 mb-6 leading-relaxed max-w-md">
+            <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed max-w-md transition-colors duration-300">
               {personalInfo.description}
             </p>
 
@@ -43,9 +43,10 @@ const Footer = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visit my ${social.name} profile`}
                     whileHover={{ scale: 1.2, y: -5 }}
                     whileTap={{ scale: 0.9 }}
-                    className="p-3 rounded-full bg-white/5 backdrop-blur-sm hover:bg-white text-gray-400 hover:text-black transition-all duration-300 border border-white/10"
+                    className="p-3 rounded-full bg-white dark:bg-white/5 backdrop-blur-sm hover:bg-gray-200 dark:hover:bg-white text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-black transition-all duration-300 border border-gray-200 dark:border-white/10"
                   >
                     <IconComponent size={20} />
                   </motion.a>
@@ -56,7 +57,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xl font-semibold mb-6 text-white">Quick Links</h4>
+            <h4 className="text-xl font-semibold mb-6 text-gray-900 dark:text-white transition-colors duration-300">Quick Links</h4>
             <ul className="space-y-3">
               {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((link) => (
                 <li key={link}>
@@ -68,7 +69,7 @@ const Footer = () => {
                         element.scrollIntoView({ behavior: 'smooth' });
                       }
                     }}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                   >
                     {link}
                   </motion.button>
@@ -79,18 +80,18 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-xl font-semibold mb-6 text-white">Contact Info</h4>
-            <div className="space-y-3 text-gray-400">
+            <h4 className="text-xl font-semibold mb-6 text-gray-900 dark:text-white transition-colors duration-300">Contact Info</h4>
+            <div className="space-y-3 text-gray-600 dark:text-gray-400 transition-colors duration-300">
               <p className="flex items-center gap-2">
-                <Mail size={16} className="text-gray-400" />
+                <Mail size={16} className="text-gray-500 dark:text-gray-400" />
                 {personalInfo.email}
               </p>
               <p className="flex items-center gap-2">
-                <Phone size={16} className="text-gray-400" />
+                <Phone size={16} className="text-gray-500 dark:text-gray-400" />
                 {personalInfo.phone}
               </p>
               <p className="flex items-center gap-2">
-                <MapPin size={16} className="text-gray-400" />
+                <MapPin size={16} className="text-gray-500 dark:text-gray-400" />
                 {personalInfo.location}
               </p>
             </div>
@@ -98,11 +99,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm mb-4 md:mb-0">
+        <div className="border-t border-gray-200 dark:border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center transition-colors duration-300">
+          <p className="text-gray-500 dark:text-gray-500 text-sm mb-4 md:mb-0">
             © {currentYear} {personalInfo.name}. All rights reserved.
           </p>
-        
+
         </div>
       </div>
     </footer>

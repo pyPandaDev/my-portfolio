@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Code, Code2, Brain, Database, BarChart3 } from 'lucide-react';
 
 const About = () => {
   const ref = useRef(null);
@@ -30,7 +29,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-24 bg-black">
+    <section id="about" className="py-24 bg-white dark:bg-black transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -45,7 +44,7 @@ const About = () => {
               variants={itemVariants}
               className="text-5xl md:text-6xl font-bold mb-6"
             >
-              <span className="text-white">
+              <span className="text-gray-900 dark:text-white transition-colors duration-300">
                 About Me
               </span>
             </motion.h2>
@@ -61,7 +60,7 @@ const About = () => {
 
               {/* Description */}
               <motion.div variants={itemVariants} className="space-y-6">
-                <p className="text-xl text-gray-400 leading-relaxed whitespace-pre-wrap">
+                <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-wrap transition-colors duration-300">
                   Hi, I'm Mayank Tiwari, an aspiring AI and Data Science Engineer with a strong foundation in computer science and a passion for building intelligent systems. I recently completed my Bachelor's degree in Computer Science and have been diving deep into the world of artificial intelligence ever since.
                   {'\n\n'}
                   I enjoy solving real-world problems using data-driven approaches and machine learning techniques. My main programming language is Python, and I also work with Dart & Flutter for building cross-platform mobile applications.
