@@ -55,7 +55,8 @@ const Projects = () => {
     { key: 'featured', label: 'Featured' },
     { key: 'Machine Learning', label: 'ML' },
     { key: 'Deep Learning', label: 'Deep Learning' },
-    { key: 'Data Science', label: 'Data Science' }
+    { key: 'Data Science', label: 'Data Science' },
+    { key: 'Web Development', label: 'Web Dev' }
   ];
 
   const filteredProjects = filter === 'featured'
@@ -72,7 +73,8 @@ const Projects = () => {
       'NLP': Code2,
       'Computer Vision': Eye,
       'Data Visualization': BarChart3,
-      'Time Series': BarChart3
+      'Time Series': BarChart3,
+      'Web Development': Code2
     };
     return icons[category] || Brain;
   };
@@ -85,7 +87,8 @@ const Projects = () => {
       'NLP': 'from-purple-500 to-purple-600',
       'Computer Vision': 'from-blue-500 to-blue-600',
       'Data Visualization': 'from-green-500 to-green-600',
-      'Time Series': 'from-orange-500 to-orange-600'
+      'Time Series': 'from-orange-500 to-orange-600',
+      'Web Development': 'from-cyan-500 to-cyan-600'
     };
     return colors[category] || 'from-primary-500 to-primary-600';
   };
@@ -123,18 +126,28 @@ const Projects = () => {
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="bg-white dark:bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-200 dark:border-white/10 perspective-1000"
+        className="bg-white dark:bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-200 dark:border-white/10 perspective-1000 flex flex-col h-full"
       >
         {/* Project Image */}
-        <div className="relative overflow-hidden transform-gpu translate-z-0">
-          <div className={`w-full h-48 bg-gradient-to-br ${categoryColor} flex items-center justify-center`}>
-            <div className="text-center transform transition-transform duration-500 group-hover:scale-110">
-              <CategoryIcon className="w-16 h-16 text-white mx-auto mb-2" />
-              <span className="text-2xl font-bold text-white">
-                {project.title.split(' ').map(word => word[0]).join('')}
-              </span>
+        <div className="relative overflow-hidden transform-gpu translate-z-0 flex-shrink-0">
+          {project.image && !project.image.includes('placeholder') ? (
+            <div className="w-full h-48 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+              />
             </div>
-          </div>
+          ) : (
+            <div className={`w-full h-48 bg-gradient-to-br ${categoryColor} flex items-center justify-center`}>
+              <div className="text-center transform transition-transform duration-500 group-hover:scale-110">
+                <CategoryIcon className="w-16 h-16 text-white mx-auto mb-2" />
+                <span className="text-2xl font-bold text-white">
+                  {project.title.split(' ').map(word => word[0]).join('')}
+                </span>
+              </div>
+            </div>
+          )}
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4 backdrop-blur-[2px]">
@@ -184,17 +197,17 @@ const Projects = () => {
         </div>
 
         {/* Project Content */}
-        <div className="p-6 bg-white dark:bg-transparent">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">
+        <div className="p-6 bg-white dark:bg-transparent flex flex-col flex-grow">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300 line-clamp-2">
             {project.title}
           </h3>
 
-          <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 transition-colors duration-300">
+          <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 transition-colors duration-300 flex-grow">
             {project.description}
           </p>
 
           {/* Technologies */}
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mb-4 mt-auto">
             {project.technologies.map((tech, techIndex) => (
               <span
                 key={techIndex}
@@ -206,7 +219,7 @@ const Projects = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex space-x-3">
+          <div className="flex space-x-3 pt-2">
             {project.liveUrl && (
               <motion.a
                 whileHover={{ scale: 1.05 }}
@@ -256,7 +269,7 @@ const Projects = () => {
             className="text-5xl md:text-6xl font-bold mb-6"
           >
             <span className="text-gray-900 dark:text-white transition-colors duration-300">
-              AI Projects
+              Featured Projects
             </span>
           </motion.h2>
           <motion.div

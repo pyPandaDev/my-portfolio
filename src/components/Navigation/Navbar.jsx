@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Home, User, Code, Folder, Mail } from 'lucide-react';
+import { Sun, Moon, Home, User, Code, Folder, Award, Mail } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 
 const Navbar = () => {
@@ -11,6 +11,7 @@ const Navbar = () => {
         { name: 'Home', href: '#home', icon: Home },
         { name: 'About', href: '#about', icon: User },
         { name: 'Skills', href: '#skills', icon: Code },
+        { name: 'Certifications', href: '#certifications', icon: Award },
         { name: 'Projects', href: '#projects', icon: Folder },
         { name: 'Contact', href: '#contact', icon: Mail }
     ];

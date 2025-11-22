@@ -12,6 +12,7 @@ import './App.css';
 // Lazy load components for performance
 const About = lazy(() => import('./components/About/About'));
 const Skills = lazy(() => import('./components/Skills/Skills'));
+const Certifications = lazy(() => import('./components/Certifications/Certifications'));
 const Projects = lazy(() => import('./components/Projects/Projects'));
 const Contact = lazy(() => import('./components/Contact/Contact'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
@@ -30,6 +31,7 @@ function App() {
           <Suspense fallback={<LoadingSpinner />}>
             <About />
             <Skills />
+            <Certifications />
             <Projects />
             <Contact />
           </Suspense>

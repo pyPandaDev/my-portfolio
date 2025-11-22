@@ -7,84 +7,92 @@ import ReactMarkdown from 'react-markdown';
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
 
 const SYSTEM_PROMPT = `
-You are Mayank Tiwari. You are NOT an AI assistant. You ARE Mayank himself.
+You are Mayank Tiwari, an AI & Data Science Engineer.
 Answer ALL questions in the first person ("I", "my", "me").
 
-CRITICAL RULES:
-1. You ONLY answer questions about Mayank's portfolio, skills, projects, experience, and professional background.
-2. If asked about ANYTHING outside this scope (e.g., "Who is Elon Musk?", "What is the weather?", general knowledge), respond EXACTLY with: "That's an interesting question, but my purpose here is to showcase my own portfolio, my skills, and my projects as an AI & Data Science Engineer. I'd love to tell you more about how I use tools like TensorFlow and PyTorch in my work, or perhaps the machine learning techniques I applied in my SpaceX Launch Success Prediction project. Feel free to ask me anything about my professional journey!"
-3. If asked "Who created you?" or similar, respond: "I'm Mayank Tiwari, and I created this AI-powered chatbot as part of my portfolio to showcase my skills in AI, machine learning, and web development. This chatbot uses Google's Gemini API to provide interactive responses about my professional background."
+CRITICAL RESPONSE RULES:
 
-COMPLETE PORTFOLIO CONTEXT:
+1. MULTI-LANGUAGE SUPPORT:
+   - ALWAYS respond in the SAME LANGUAGE the user asks the question in
+   - If user asks in Hindi, respond in Hindi
+   - If user asks in English, respond in English
+   - Match the user's language naturally and fluently
 
-PERSONAL INFORMATION:
-- Name: Mayank Tiwari
-- Title: AI & Data Science Engineer
-- Tagline: Transforming data into intelligent solutions
-- Education: Bachelor of Technology in Computer Science (Graduating 2025)
-- Description: Computer Science graduate (2025) passionate about artificial intelligence, machine learning, and data science. I specialize in building intelligent systems that solve real-world problems using Python, advanced algorithms, and cutting-edge AI technologies.
-- Email: mayankt1713@gmail.com
-- Phone: +91 93097 42643
-- Location: Thane, India
-- Resume: https://drive.google.com/file/d/1NCSjP5eIyz5LVCqenoNkfIoQjgeglqOH/view?usp=sharing
-- GitHub: https://github.com/pyPandaDev
-- LinkedIn: https://linkedin.com/in/mayank-tiwari-458400389
-- Kaggle: https://www.kaggle.com/mayank1713
+2. SIMPLE QUESTIONS = SIMPLE ANSWERS:
+   - For basic greetings like "hi", "hello", "hey" → Just respond warmly and briefly
+   - For simple identity questions like "who are you?" → "I am Mayank, an AI & Data Science Engineer."
+   - For "who created you?" → "I created this chatbot myself to showcase my AI skills."
+   - Keep these responses SHORT and NATURAL (1-2 sentences max)
 
-SKILLS (with proficiency levels):
+3. GENERAL QUESTIONS:
+   - You CAN answer general questions (weather, current events, explanations, etc.)
+   - Keep answers concise and helpful
+   - After answering, you MAY optionally mention your portfolio work if relevant
+   - Example: If asked about AI, answer the question, then you could add "I work with similar technologies in my projects."
 
-Programming Languages:
-- Python (90% proficiency) - My primary language for AI/ML development
-- Dart (60% proficiency) - Used for Flutter mobile app development
+4. PORTFOLIO/PROJECT QUESTIONS:
+   - ONLY for questions about YOUR projects, skills, experience, or portfolio → Give DETAILED, FORMAL, and PROFESSIONAL answers
+   - Structure information clearly with proper formatting
+   - Highlight key achievements and technical details
+   - Use storytelling to make it engaging
+   - Present information in a polished, professional manner
+   - Always in the SAME LANGUAGE as the question
 
-AI & Machine Learning:
-- TensorFlow (60% proficiency)
-- PyTorch (70% proficiency)
-- Scikit-learn (80% proficiency)
-- Keras (75% proficiency)
-- OpenCV (90% proficiency) - Computer vision tasks
+PORTFOLIO KNOWLEDGE BASE:
+(Use this ONLY when asked about portfolio/projects)
 
-Data Science & Analytics:
-- Pandas (95% proficiency) - Data manipulation and analysis
-- NumPy (95% proficiency) - Numerical computing
-- Matplotlib (80% proficiency) - Data visualization
-- Seaborn (75% proficiency) - Statistical data visualization
+ABOUT ME:
+- I'm Mayank Tiwari, an AI & Data Science Engineer
+- Graduating with B.Tech in Computer Science (2025)
+- Based in Thane, India
+- Contact: mayankt1713@gmail.com | +91 93097 42643
+- GitHub: pyPandaDev | LinkedIn | Kaggle: mayank1713
 
-Database:
-- MySQL (90% proficiency)
--MongoDB (90% proficiency)
+TECHNICAL SKILLS:
+- Python (90%), Dart (60%)
+- PyTorch (70%), Scikit-learn (80%), OpenCV (90%)
+- Pandas (95%), NumPy (95%), Matplotlib (80%)
+- MySQL (90%), MongoDB (90%)
 
-PROJECTS (Complete Details):
+MY PROJECTS:
 
-1. SpaceX Launch Success Prediction
-   - Category: Machine Learning
-   - Description: An end-to-end Machine Learning project that predicts the success of SpaceX Falcon 9 rocket launches using historical launch data. This project includes comprehensive EDA (Exploratory Data Analysis), feature engineering, model training, explainability analysis with SHAP, and an interactive Streamlit web application.
-   - Technologies: Python, XGBoost, RandomForest, SHAP, Streamlit, Pandas, Scikit-learn, Jupyter
+1. Python Playground
+   - Interactive browser-based Python IDE
+   - Live at: https://python-playground-sepia.vercel.app/
+   - Tech: React, WebAssembly, Monaco Editor
+   - GitHub: https://github.com/pyPandaDev/python-playground
+
+2. SpaceX Launch Success Prediction
+   - ML project predicting Falcon 9 launch outcomes
+   - Used XGBoost, RandomForest, SHAP for explainability
+   - Streamlit dashboard for visualizations
    - GitHub: https://github.com/pyPandaDev/spacex_launch_prediction
-   - Key Features: Historical data analysis, predictive modeling, SHAP explainability, interactive web interface
-   - Featured Project: Yes
 
-2. AI-Buddy AI Powered Chatbot With Web Support
-   - Category: Mobile App
-   - Description: A chatbot is a computer program designed to simulate human-like conversations, either through text or voice. Using artificial intelligence, it processes and understands user inputs to provide automated, helpful responses. This mobile app integrates multiple AI services for enhanced functionality.
-   - Technologies: Flutter, Dart, Gemini API, Firebase, OpenAI
+3. AI-Buddy Chatbot
+   - Cross-platform mobile app (Flutter)
+   - Integrates Gemini API, OpenAI, Firebase
+   - Supports text and voice conversations
    - GitHub: https://github.com/pyPandaDev/Chat_bot
-   - Key Features: Multi-platform support, AI-powered responses, web integration, real-time chat
-   - Featured Project: Yes
 
-FORMATTING RULES:
-- Use **Markdown** to organize your answers.
-- Use **bullet points** for lists (skills, projects, technologies).
-- Use **bold text** for emphasis on key technologies or achievements.
-- Keep responses concise, professional, but friendly and engaging.
-- When discussing projects, mention specific technologies and techniques used.
-- When discussing skills, you can mention proficiency levels if relevant.
+CERTIFICATIONS:
+1. Oracle AI Foundation Associate (Oct 2025)
+2. Oracle Data Science Professional (2025)
+3. Deloitte Data Analytics Job Simulation (Jul 2025)
+4. British Airways Data Science Simulation (Oct 2025)
+
+RESPONSE GUIDELINES:
+- ALWAYS match the user's language
+- Simple questions → Simple answers (1-2 sentences)
+- General questions → Helpful concise answers
+- Portfolio questions → Detailed formal professional answers
+- Use Markdown formatting for clarity
+- Be natural and conversational
 `;
 
 const ChatBot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { id: 1, text: "Hi! I'm Mayank. Ask me anything about my projects, skills, or experience!", sender: 'bot' }
+        { id: 1, text: "Hello! Myself Mayank. How can I assist you?", sender: 'bot' }
     ]);
     const [inputText, setInputText] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -110,6 +118,10 @@ const ChatBot = () => {
         setInputText('');
         setIsLoading(true);
 
+        // Add empty bot message that will be filled with typing effect
+        const botMessageId = Date.now() + 1;
+        setMessages(prev => [...prev, { id: botMessageId, text: '', sender: 'bot', isTyping: true }]);
+
         try {
             const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
             const chatHistory = messages.map(msg => ({
@@ -126,14 +138,39 @@ const ChatBot = () => {
             });
 
             const result = await chat.sendMessage(inputText);
-            const text = (await result.response).text();
-            setMessages(prev => [...prev, { id: Date.now() + 1, text, sender: 'bot' }]);
+            const fullText = (await result.response).text();
+
+            // Typing effect: reveal text character by character
+            let currentText = '';
+            const typingSpeed = 15; // milliseconds per character
+
+            for (let i = 0; i < fullText.length; i++) {
+                currentText += fullText[i];
+                setMessages(prev => prev.map(msg =>
+                    msg.id === botMessageId
+                        ? { ...msg, text: currentText }
+                        : msg
+                ));
+                await new Promise(resolve => setTimeout(resolve, typingSpeed));
+            }
+
+            // Mark as done typing
+            setMessages(prev => prev.map(msg =>
+                msg.id === botMessageId
+                    ? { ...msg, isTyping: false }
+                    : msg
+            ));
+
         } catch (error) {
             console.error("Gemini API Error:", error);
             let errorMessage = "Sorry, I encountered an error. Please try again later.";
             if (error.message?.includes("API key not valid")) errorMessage = "Error: Invalid API Key.";
             else if (error.message?.includes("404")) errorMessage = "Error: Model not found.";
-            setMessages(prev => [...prev, { id: Date.now() + 1, text: errorMessage, sender: 'bot' }]);
+            setMessages(prev => prev.map(msg =>
+                msg.id === botMessageId
+                    ? { ...msg, text: errorMessage, isTyping: false }
+                    : msg
+            ));
         } finally {
             setIsLoading(false);
         }
@@ -227,55 +264,72 @@ const ChatBot = () => {
         <>
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} transition={{ type: "spring", stiffness: 300, damping: 30 }} className="fixed bottom-24 right-6 w-80 sm:w-96 h-[500px] bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
-                        <div className="p-4 bg-gray-900 dark:bg-white flex items-center justify-between transition-colors duration-300">
-                            <div className="flex items-center gap-2 text-white dark:text-black">
-                                <Sparkles size={20} />
-                                <span className="font-semibold">Chat with Mayank</span>
-                            </div>
-                            <button onClick={() => setIsOpen(false)} className="text-white/80 dark:text-black/60 hover:text-white dark:hover:text-black transition-colors">
-                                <X size={20} />
-                            </button>
-                        </div>
-                        <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                            {messages.map((msg) => (
-                                <motion.div key={msg.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
-                                    <div className={`max-w-[80%] p-3 rounded-2xl text-sm transition-colors duration-300 ${msg.sender === 'user' ? 'bg-gray-900 dark:bg-white text-white dark:text-black rounded-br-none' : 'bg-gray-100 dark:bg-white/10 text-gray-800 dark:text-gray-200 rounded-bl-none'}`}>
-                                        {msg.sender === 'user' ? msg.text : <div className="prose prose-sm dark:prose-invert max-w-none [&>p]:mb-2 [&>p:last-child]:mb-0 [&>ul]:list-disc [&>ul]:ml-4 [&>ul]:mb-2 [&>li]:mb-1 [&>strong]:font-bold"><ReactMarkdown>{msg.text}</ReactMarkdown></div>}
-                                    </div>
-                                    {msg.sender === 'bot' && (
-                                        <button
-                                            onClick={() => {
-                                                if (playingAudio === msg.id) {
-                                                    stopAudio();
-                                                } else if (loadingTTS !== msg.id) {
-                                                    handleTextToSpeech(msg.text, msg.id);
-                                                }
-                                            }}
-                                            disabled={loadingTTS === msg.id}
-                                            className={`mt-1 p-1.5 rounded-full transition-colors ${loadingTTS === msg.id ? 'bg-gray-300 dark:bg-white/20 cursor-wait' : playingAudio === msg.id ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-gray-200 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-white/20'}`}
-                                            title={loadingTTS === msg.id ? "Generating..." : playingAudio === msg.id ? "Stop" : "Listen"}
-                                        >
-                                            {loadingTTS === msg.id ? <Loader2 size={14} className="animate-spin" /> : <Volume2 size={14} />}
-                                        </button>
-                                    )}
-                                </motion.div>
-                            ))}
-                            {isLoading && <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start"><div className="bg-gray-100 dark:bg-white/10 p-3 rounded-2xl rounded-bl-none"><Loader2 size={20} className="animate-spin text-gray-500 dark:text-gray-400" /></div></motion.div>}
-                            <div ref={messagesEndRef} />
-                        </div>
-                        <form onSubmit={handleSubmit} className="p-4 border-t border-gray-200 dark:border-white/10 bg-white/50 dark:bg-black/50">
-                            <div className="flex gap-2">
-                                <input type="text" value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder="Ask me anything..." disabled={isLoading} className="flex-1 bg-transparent border border-gray-300 dark:border-white/20 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-gray-900 dark:focus:border-white text-gray-900 dark:text-white placeholder-gray-500 transition-colors duration-300 disabled:opacity-50" />
-                                <button type="submit" disabled={!inputText.trim() || isLoading} className="p-2 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300">
-                                    <Send size={18} />
+                    <>
+                        {/* Blurred Background Overlay */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsOpen(false)}
+                            className="fixed inset-0 bg-black/50 backdrop-blur-md z-[100]"
+                        />
+
+                        {/* Chat Window - Right Side */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 100 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 100 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            className="fixed right-32 top-4 bottom-4 w-[36vw] bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl z-[101] flex flex-col overflow-hidden"
+                        >
+                            <div className="p-4 bg-gray-900 dark:bg-white flex items-center justify-between transition-colors duration-300">
+                                <div className="flex items-center gap-2 text-white dark:text-black">
+                                    <Sparkles size={20} />
+                                    <span className="font-semibold">Chat with Mayank</span>
+                                </div>
+                                <button onClick={() => setIsOpen(false)} className="text-white/80 dark:text-black/60 hover:text-white dark:hover:text-black transition-colors">
+                                    <X size={20} />
                                 </button>
                             </div>
-                        </form>
-                    </motion.div>
+                            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                                {messages.map((msg) => (
+                                    <motion.div key={msg.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
+                                        <div className={`max-w-[80%] p-3 rounded-2xl text-sm transition-colors duration-300 ${msg.sender === 'user' ? 'bg-gray-900 dark:bg-white text-white dark:text-black rounded-br-none' : 'bg-gray-100 dark:bg-white/10 text-gray-800 dark:text-gray-200 rounded-bl-none'}`}>
+                                            {msg.sender === 'user' ? msg.text : <div className="prose prose-sm dark:prose-invert max-w-none [&>p]:mb-2 [&>p:last-child]:mb-0 [&>ul]:list-disc [&>ul]:ml-4 [&>ul]:mb-2 [&>li]:mb-1 [&>strong]:font-bold"><ReactMarkdown>{msg.text}</ReactMarkdown></div>}
+                                        </div>
+                                        {msg.sender === 'bot' && (
+                                            <button
+                                                onClick={() => {
+                                                    if (playingAudio === msg.id) {
+                                                        stopAudio();
+                                                    } else if (loadingTTS !== msg.id) {
+                                                        handleTextToSpeech(msg.text, msg.id);
+                                                    }
+                                                }}
+                                                disabled={loadingTTS === msg.id}
+                                                className={`mt-1 p-1.5 rounded-full transition-colors ${loadingTTS === msg.id ? 'bg-gray-300 dark:bg-white/20 cursor-wait' : playingAudio === msg.id ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-gray-200 dark:bg-white/10 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-white/20'}`}
+                                                title={loadingTTS === msg.id ? "Generating..." : playingAudio === msg.id ? "Stop" : "Listen"}
+                                            >
+                                                {loadingTTS === msg.id ? <Loader2 size={14} className="animate-spin" /> : <Volume2 size={14} />}
+                                            </button>
+                                        )}
+                                    </motion.div>
+                                ))}
+                                <div ref={messagesEndRef} />
+                            </div>
+                            <form onSubmit={handleSubmit} className="p-4 border-t border-gray-200 dark:border-white/10 bg-white/50 dark:bg-black/50">
+                                <div className="flex gap-2">
+                                    <input type="text" value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder="Ask me anything..." disabled={isLoading} className="flex-1 bg-transparent border border-gray-300 dark:border-white/20 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-gray-900 dark:focus:border-white text-gray-900 dark:text-white placeholder-gray-500 transition-colors duration-300 disabled:opacity-50" />
+                                    <button type="submit" disabled={!inputText.trim() || isLoading} className="p-2 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300">
+                                        <Send size={18} />
+                                    </button>
+                                </div>
+                            </form>
+                        </motion.div>
+                    </>
                 )}
             </AnimatePresence>
-            <motion.button onClick={() => setIsOpen(!isOpen)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="fixed bottom-6 right-6 p-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full shadow-lg hover:shadow-xl z-50 flex items-center justify-center transition-colors duration-300">
+            <motion.button onClick={() => setIsOpen(!isOpen)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="fixed bottom-6 right-6 p-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full shadow-lg hover:shadow-xl z-[110] flex items-center justify-center transition-colors duration-300">
                 {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
             </motion.button>
         </>

@@ -55,7 +55,8 @@ const ParticleBackground = () => {
 
     // Create particles
     const createParticles = () => {
-      const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+      // Reduced density: divide by 25000 instead of 15000 for fewer particles
+      const particleCount = Math.floor((canvas.width * canvas.height) / 25000);
       particles = [];
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
@@ -72,7 +73,8 @@ const ParticleBackground = () => {
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 120) {
+          // Reduced connection distance from 120 to 100
+          if (distance < 100) {
             const opacity = (1 - distance / 120) * 0.2;
             ctx.strokeStyle = `rgba(${color}, ${opacity})`;
             ctx.lineWidth = 0.5;
