@@ -141,17 +141,21 @@ const ChatBot = () => {
             const fullText = (await result.response).text();
 
             // Typing effect: reveal text character by character
-            let currentText = '';
             const typingSpeed = 15; // milliseconds per character
 
-            for (let i = 0; i < fullText.length; i++) {
-                currentText += fullText[i];
+            // Use a separate function to avoid ESLint no-loop-func warning
+            const typeCharacter = async (index) => {
+                const currentText = fullText.slice(0, index + 1);
                 setMessages(prev => prev.map(msg =>
                     msg.id === botMessageId
                         ? { ...msg, text: currentText }
                         : msg
                 ));
                 await new Promise(resolve => setTimeout(resolve, typingSpeed));
+            };
+
+            for (let i = 0; i < fullText.length; i++) {
+                await typeCharacter(i);
             }
 
             // Mark as done typing
@@ -274,13 +278,13 @@ const ChatBot = () => {
                             className="fixed inset-0 bg-black/50 backdrop-blur-md z-[100]"
                         />
 
-                        {/* Chat Window - Right Side */}
+                        {/* Chat Window - Responsive */}
                         <motion.div
                             initial={{ opacity: 0, x: 100 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 100 }}
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                            className="fixed right-32 top-4 bottom-4 w-[36vw] bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl z-[101] flex flex-col overflow-hidden"
+                            className="fixed right-0 top-0 bottom-0 w-full md:right-4 md:top-4 md:bottom-4 md:w-[70vw] lg:right-8 lg:w-[60vw] xl:right-32 xl:w-[36vw] bg-white/80 dark:bg-black/80 backdrop-blur-xl border-none md:border md:border-gray-200 dark:md:border-white/10 md:rounded-2xl shadow-2xl z-[101] flex flex-col overflow-hidden"
                         >
                             <div className="p-4 bg-gray-900 dark:bg-white flex items-center justify-between transition-colors duration-300">
                                 <div className="flex items-center gap-2 text-white dark:text-black">
@@ -329,7 +333,7 @@ const ChatBot = () => {
                     </>
                 )}
             </AnimatePresence>
-            <motion.button onClick={() => setIsOpen(!isOpen)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="fixed bottom-6 right-6 p-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full shadow-lg hover:shadow-xl z-[110] flex items-center justify-center transition-colors duration-300">
+            <motion.button onClick={() => setIsOpen(!isOpen)} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className={`fixed bottom-24 right-6 md:bottom-6 p-3 md:p-4 bg-gray-900 dark:bg-white text-white dark:text-black rounded-full shadow-lg hover:shadow-xl z-[110] flex items-center justify-center transition-colors duration-300 ${isOpen ? 'hidden lg:flex' : 'flex'}`}>
                 {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
             </motion.button>
         </>
